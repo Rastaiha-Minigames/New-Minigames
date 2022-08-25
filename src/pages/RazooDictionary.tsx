@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
-  Box,
   Button,
-  Slider,
-  Chip,
   Tooltip,
   Container,
   Typography,
@@ -24,6 +21,8 @@ const RazooDictionary = () => {
     shownText = shownText.replaceAll(item, (i + 1).toString());
   }
 
+  console.log(text.split('\n'))
+
   const getWordRepeatNumber = (searchedWord) => {
     let count = 0;
     const words = shownText.split(/\s+/);
@@ -43,6 +42,7 @@ const RazooDictionary = () => {
       setWord(null);
     }
   }
+  text.split('\n')
 
   return (
     <Container>
@@ -59,16 +59,22 @@ const RazooDictionary = () => {
               onChange={(e) => setText(e.target.value)}
             />
             <Stack direction='row' spacing={0.5}>
-              {shownText.split(/\s+/).map((word) => (
-                <Tooltip arrow title={`تعداد تکرار این کلمه در متن: ${getWordRepeatNumber(word)}`}>
-                  <span
-                    onMouseEnter={() => setHoveredWord(word)}
-                    onMouseLeave={() => setHoveredWord(null)}
-                    style={{ fontWeight: word === hoveredWord ? 'bold' : null }}>
-                    {word}
-                  </span>
-                </Tooltip>
-              ))}
+              <Stack>
+                {shownText.split('\n').map((paragraph) => (
+                  <Typography>
+                    {paragraph.split(/\s+/).map((word) => (
+                      <Tooltip arrow title={`تعداد تکرار این کلمه در متن: ${getWordRepeatNumber(word)}`}>
+                        <span
+                          onMouseEnter={() => setHoveredWord(word)}
+                          onMouseLeave={() => setHoveredWord(null)}
+                          style={{ fontWeight: word === hoveredWord ? 'bold' : null }}>
+                          {word}
+                        </span>
+                      </Tooltip>
+                    ))}
+                  </Typography>
+                ))}
+              </Stack>
             </Stack>
           </Stack>
         </Paper>
