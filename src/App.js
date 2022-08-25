@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './configs/styles/App.css';
+
+import Root from './routes';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import createEmotionCache from './configs/createEmotionCache'
+import { CacheProvider } from "@emotion/react";
+import selectTheme from './configs/themes';
 
 function App() {
+  document.dir = 'rtl';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CacheProvider value={createEmotionCache('rtl')}>
+      <ThemeProvider theme={selectTheme('rtl')}>
+        <CssBaseline />
+        <Root />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
