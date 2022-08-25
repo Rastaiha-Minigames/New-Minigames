@@ -65,7 +65,7 @@ const RazooDictionary = () => {
       <Stack alignItems='stretch' direction='row'>
         <Paper sx={{ width: '100%', margin: 1, padding: 1 }}>
           <Stack spacing={2}>
-            <Chip variant='outlined' label={`درصد فشرده‌سازی: ${isNaN(successRate) ? 'نامشخص' : successRate}`} />
+            <Chip variant='outlined' label={`درصد فشرده‌سازی: ${(!isFinite(successRate) && isNaN(successRate)) ? 'نامشخص' : successRate}`} />
             <TextField
               variant='outlined'
               multiline
