@@ -35,8 +35,6 @@ const RazooDictionary = () => {
     return count;
   }
 
-  console.log(shownText)
-
   const successRate = 1;
 
   const addWordToDictionary = () => {
@@ -51,17 +49,22 @@ const RazooDictionary = () => {
       <Stack alignItems='stretch' direction='row'>
         <Paper sx={{ width: '100%', margin: 1, padding: 1 }}>
           <Stack spacing={2}>
-            <Chip variant='outlined' label={successRate} />
+            {/* <Chip variant='outlined' label={successRate} /> */}
             <TextField
               variant='outlined'
               multiline
+              placeholder="لطفاً متن خود را وارد کنید"
               rows={5}
+              value={text}
               onChange={(e) => setText(e.target.value)}
             />
             <Stack direction='row' spacing={0.5}>
               {shownText.split(/\s+/).map((word) => (
                 <Tooltip arrow title={`تعداد تکرار این کلمه در متن: ${getWordRepeatNumber(word)}`}>
-                  <span style={{ fontWeight: word == hoveredWord ? 'bold' : 'normal' }}>
+                  <span
+                    onMouseEnter={() => setHoveredWord(word)}
+                    onMouseLeave={() => setHoveredWord(null)}
+                    style={{ fontWeight: word === hoveredWord ? 'bold' : null }}>
                     {word}
                   </span>
                 </Tooltip>
