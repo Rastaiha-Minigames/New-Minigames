@@ -22,8 +22,6 @@ const RazooDictionary = () => {
     compressedText = compressedText.replaceAll(item, (i + 1).toString());
   }
 
-  console.log(text.split('\n'))
-
   const getWordRepeatNumber = (searchedWord) => {
     let count = 0;
     const words = compressedText.split(/\s+/);
@@ -83,7 +81,11 @@ const RazooDictionary = () => {
                         <span
                           onMouseEnter={() => setHoveredWord(word)}
                           onMouseLeave={() => setHoveredWord(null)}
-                          style={{ fontWeight: word === hoveredWord ? 'bold' : null }}>
+                          style={{
+                            fontWeight: word === hoveredWord ? 'bold' : null,
+                            paddingRight: '2px',
+                            paddingLeft: '2px',
+                          }}>
                           {word}
                         </span>
                       </Tooltip>
