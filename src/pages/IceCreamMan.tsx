@@ -7,12 +7,9 @@ import {
   Stack,
 } from '@mui/material';
 
-// https://developpaper.com/js-implementation-of-huffman-tree/
-// https://github.com/saliherdemk/Optimal-Huffman-Tree
-
 const IceCreamMan = () => {
   const [positions, setPositions] = useState([25, 75]);
-  console.log(positions);
+
   return (
     <Container sx={{
       minHeight: '100vh',
