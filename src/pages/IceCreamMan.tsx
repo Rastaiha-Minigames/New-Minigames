@@ -24,7 +24,7 @@ const IceCreamMan = () => {
           width: '100%'
         }} />
         <Box sx={{
-          borderTopStyle: 'dotted',
+          borderTop: '4px dotted',
           backgroundColor: '#ff6060',
           height: `${(positions[0] + positions[1]) / 2}%`,
           width: '100%'
