@@ -24,11 +24,11 @@ const IceCreamMan = () => {
           width: '100%'
         }} />
         <Box sx={{
+          borderTopStyle: 'dotted',
           backgroundColor: '#ff6060',
           height: `${(positions[0] + positions[1]) / 2}%`,
           width: '100%'
         }} />
-
       </Stack>
       <Stack sx={{ position: 'absolute', height: '80vh' }} alignItems='center' justifyContent='center'>
         <Slider
@@ -38,6 +38,12 @@ const IceCreamMan = () => {
           sx={{
             '& input[type="range"]': {
               WebkitAppearance: 'slider-vertical',
+            },
+            '& :nth-child(3)': {
+              color: 'red',
+            },
+            '& :nth-child(4)': {
+              color: 'blue',
             },
           }}
           orientation="vertical"
