@@ -1,14 +1,16 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import ImageAdjustment from '../pages/ImageAdjustment';
+import RGBDecomposition from '../pages/RGBDecomposition';
+import YCbCrDecomposition from '../pages/YCbCrDecomposition';
 import RazooDictionary from '../pages/RazooDictionary';
 import IceCreamMan from '../pages/IceCreamMan';
 
 const Root = () => {
   return (
     <Routes>
-      <Route path="/image-adjustment/" element={<ImageAdjustment />} />
+      <Route path="/rgb-decomposition/" element={<RGBDecomposition />} />
+      <Route path="/ycbcr-decomposition/" element={<YCbCrDecomposition />} />
       <Route path="/ice-cream-man/" element={<IceCreamMan />} />
       <Route path="/razoo-dictionary/" element={<RazooDictionary />} />
 
