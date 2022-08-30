@@ -15,7 +15,10 @@ const RGBDecomposition = () => {
   const [disabled, setDisabled] = useState(false);
 
   const submit = async () => {
-    if (colorValues.r > 8 || colorValues.r < 0 || colorValues.g > 8 || colorValues.g < 0 || colorValues.b > 8 || colorValues.b < 0) {
+    r = parseInt(colorValues.r)
+    g = parseInt(colorValues.g)
+    b = parseInt(colorValues.b)
+    if (r > 8 || r < 0 || g > 8 || g < 0 || b > 8 || b < 0) {
       return;
     }
     setDisabled(true);
@@ -26,9 +29,9 @@ const RGBDecomposition = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        r: parseInt(colorValues.r),
-        g: parseInt(colorValues.g),
-        b: parseInt(colorValues.b),
+        r: r
+        g: g,
+        b: b,
       })
     }).then((res) => res.json())
       .then((res) => {
