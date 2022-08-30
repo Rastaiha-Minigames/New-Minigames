@@ -10,13 +10,16 @@ import {
 } from '@mui/material';
 import { baseURL } from "../configs/network/consts";
 const RGBDecomposition = () => {
-  const [colorValues, setColorValues] = useState({ y: 4, cb: 4, cr: 4 });
+  const [colorValues, setColorValues] = useState({ y: "8", cb: "8", cr: "8" });
   const [imagesSrc, setImagesSrc] = useState({ Y: '', Cb: '', Cr: '', Merge: '' });
   const [disabled, setDisabled] = useState(false);
 
 
   const submit = async () => {
-    if (colorValues.y > 8 || colorValues.y < 0 || colorValues.cb > 8 || colorValues.cb < 0 || colorValues.cr > 8 || colorValues.cr < 0) {
+    let y = parseInt(colorValues.y);
+    let cb = parseInt(colorValues.cb);
+    let cr = parseInt(colorValues.cr);
+    if (y > 8 || y < 0 || cb > 8 || cb < 0 || cr > 8 || cr < 0) {
       return;
     }
     setDisabled(true);
@@ -27,9 +30,9 @@ const RGBDecomposition = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        r: colorValues.y,
-        g: colorValues.cb,
-        b: colorValues.cr,
+        y: y,
+        cb: cb,
+        cr: cr,
       })
     }).then((res) => res.json())
       .then((res) => {
