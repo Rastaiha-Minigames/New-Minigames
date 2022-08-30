@@ -9,14 +9,14 @@ import {
 } from '@mui/material';
 import { baseURL } from "../configs/network/consts";
 const RGBDecomposition = () => {
-  const [colorValues, setColorValues] = useState({ r: 0.50, g: 0.50, b: 0.5 });
+  const [colorValues, setColorValues] = useState({ r: 1, g: 1, b: 1 });
   const [imagesSrc, setImagesSrc] = useState({ R: '', G: '', B: '', Merge: '' });
   const [disabled, setDisabled] = useState(false);
 
 
   const submit = async () => {
     setDisabled(true);
-    await fetch(baseURL + '/source_coding/RGB/', {
+    await fetch(baseURL + '/source_coding/RGB_split/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

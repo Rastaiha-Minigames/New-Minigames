@@ -6,30 +6,23 @@ import {
   Stack,
   Button,
   CircularProgress,
-  TextField,
 } from '@mui/material';
 import { baseURL } from "../configs/network/consts";
 const RGBDecomposition = () => {
-  const [colorValues, setColorValues] = useState({ r: 4, g: 4, b: 4 });
-  const [imagesSrc, setImagesSrc] = useState({ R: '', G: '', B: '', Merge: '' });
+  const [colorValues, setColorValues] = useState({ y: 1, cb: 1, cr: 1 });
+  const [imagesSrc, setImagesSrc] = useState({ Y: '', Cb: '', Cr: '', Merge: '' });
   const [disabled, setDisabled] = useState(false);
 
+
   const submit = async () => {
-    if (colorValues.r > 8 || colorValues.r < 0 || colorValues.g > 8 || colorValues.g < 0 || colorValues.b > 8 || colorValues.b < 0) {
-      return;
-    }
     setDisabled(true);
-    await fetch(baseURL + '/source_coding/RGB_cutbits/', {
+    await fetch(baseURL + '/source_coding/YCbCr_downsample/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        r: colorValues.r,
-        g: colorValues.g,
-        b: colorValues.b,
-      })
+      body: JSON.stringify(colorValues)
     }).then((res) => res.json())
       .then((res) => {
         setImagesSrc(res);
@@ -51,43 +44,39 @@ const RGBDecomposition = () => {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack sx={{ width: '100%' }} >
         <Stack direction='row' alignItems='center' justifyContent='space-evenly'>
-          <Stack spacing={1}>
-            <Stack alignItems='center' spacing={1}>
-              <img alt='' src={imagesSrc.R} width={100} />
-              <TextField
-                size="small"
-                value={colorValues.r}
+          <Stack>
+            <Stack>
+              <img alt='' src={imagesSrc.Y} width={100} />
+              <Slider
+                value={colorValues.y * 100}
                 onChange={e => {
                   setColorValues({
                     ...colorValues,
-                    r: (e.target as any).value,
-                  });
-                }}
-              />
-            </Stack>
-            <Stack spacing={1} alignItems='center'>
-              <img alt='' src={imagesSrc.G} width={100} />
-              <TextField
-                size="small"
-                value={colorValues.g}
-                onChange={e => {
-                  setColorValues({
-                    ...colorValues,
-                    g: (e.target as any).value,
+                    y: (e.target as any).value / 100,
                   });
                 }} />
             </Stack>
-            <Stack spacing={1} alignItems='center'>
-              <img alt='' src={imagesSrc.B} width={100} />
-              <TextField
-                size="small"
-                value={colorValues.b}
+            <Stack>
+              <img alt='' src={imagesSrc.Cb} width={100} />
+              <Slider
+                value={colorValues.cb * 100}
                 onChange={e => {
                   setColorValues({
                     ...colorValues,
-                    b: (e.target as any).value,
+                    cb: (e.target as any).value / 100,
+                  });
+                }} />
+            </Stack>
+            <Stack>
+              <img alt='' src={imagesSrc.Cr} width={100} />
+              <Slider
+                value={colorValues.cr * 100}
+                onChange={e => {
+                  setColorValues({
+                    ...colorValues,
+                    cr: (e.target as any).value / 100,
                   });
                 }} />
             </Stack>

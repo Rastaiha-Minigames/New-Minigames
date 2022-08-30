@@ -20,16 +20,16 @@ const RGBDecomposition = () => {
       return;
     }
     setDisabled(true);
-    await fetch(baseURL + '/source_coding/YCbCr/', {
+    await fetch(baseURL + '/source_coding/YCbCr_cutbits/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        r: 2 ** colorValues.y / 256,
-        g: 2 ** colorValues.cb / 256,
-        b: 2 ** colorValues.cr / 256,
+        r: colorValues.y,
+        g: colorValues.cb,
+        b: colorValues.cr,
       })
     }).then((res) => res.json())
       .then((res) => {

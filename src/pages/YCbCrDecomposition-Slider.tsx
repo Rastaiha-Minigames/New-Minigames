@@ -9,14 +9,14 @@ import {
 } from '@mui/material';
 import { baseURL } from "../configs/network/consts";
 const RGBDecomposition = () => {
-  const [colorValues, setColorValues] = useState({ y: 0.50, cb: 0.50, cr: 0.5 });
+  const [colorValues, setColorValues] = useState({ y: 1, cb: 1, cr: 1 });
   const [imagesSrc, setImagesSrc] = useState({ Y: '', Cb: '', Cr: '', Merge: '' });
   const [disabled, setDisabled] = useState(false);
 
 
   const submit = async () => {
     setDisabled(true);
-    await fetch(baseURL + '/source_coding/YCbCr/', {
+    await fetch(baseURL + '/source_coding/YCbCr_split/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
