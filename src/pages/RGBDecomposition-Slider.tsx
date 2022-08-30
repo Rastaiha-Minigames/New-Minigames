@@ -37,8 +37,6 @@ const RGBDecomposition = () => {
     submit();
   }, [])
 
-  console.log(colorValues)
-
   return (
     <Container sx={{
       minHeight: '100vh',
